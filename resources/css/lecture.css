@@ -1,0 +1,80 @@
+/* General styles for the container and cards */
+.container {
+    max-width: 960px; /* Adjust the container width as needed */
+    margin: 0 auto; /* Center the container */
+    padding: 20px; /* Padding inside the container */
+}
+
+/* Styling for the row */
+.row {
+    display: flex; /* Flexbox layout for the row */
+    flex-wrap: wrap; /* Allow wrapping of items */
+    gap: 20px; /* Space between items */
+}
+
+/* Styling for the columns */
+.col-lg-4 {
+    flex: 0 0 33.333333%; /* Flex basis for large screens */
+    max-width: 33.333333%; /* Max width for large screens */
+}
+
+/* Styling for the cards */
+.card {
+    background-color: #003366; /* Dark blue background for the cards */
+    color: white; /* White text color for the card content */
+    border-radius: 50%; /* Makes the cards circular */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    padding: 20px; /* Padding inside the card */
+    margin-top: 20px; /* Space above the card */
+    display: flex; /* Flexbox layout for the card */
+    flex-direction: column; /* Stack children vertically */
+    align-items: center; /* Center children horizontally */
+    justify-content: center; /* Center children vertically */
+    height: 200px; /* Fixed height for circular cards */
+    width: 200px; /* Fixed width for circular cards */
+}
+
+/* Styling for the card header */
+.card-header {
+    background-color: #004d99; /* Slightly lighter shade for the header */
+    color: white; /* White text for the header */
+    border-radius: 50%; /* Makes the header circular */
+    padding: 15px; /* Padding inside the header */
+    width: 100%; /* Full width for circular header */
+    text-align: center; /* Center the text */
+}
+
+/* Styling for the card body */
+.card-body {
+    padding: 20px; /* Padding inside the body */
+    flex-grow: 1; /* Allow the body to grow and fill available space */
+}
+
+/* Styling for the card title */
+.card-title {
+    font-size: 24px; /* Larger font size for the title */
+    font-weight: bold; /* Bold font for the title */
+    margin-bottom: 10px; /* Space below the title */
+}
+
+/* Styling for the card text */
+.card-text {
+    font-size: 16px; /* Standard font size for the text */
+    margin-bottom: 10px; /* Space below each text paragraph */
+}
+
+/* Styling for the view lecture button */
+.btn-primary {
+    background-color: #0066cc; /* Lighter blue background for the button */
+    color: white; /* White text for the button */
+    border-color: #0066cc; /* Lighter blue border for the button */
+    border-radius: 5px; /* Rounded corners for the button */
+    padding: 10px 20px; /* Padding inside the button */
+    font-size: 16px; /* Standard font size for the button */
+    cursor: pointer; /* Cursor changes to pointer on hover */
+}
+
+.btn-primary:hover {
+    background-color: #0080ff; /* Lighter shade for the button on hover */
+    border-color: #0080ff; /* Lighter shade for the button on hover */
+}

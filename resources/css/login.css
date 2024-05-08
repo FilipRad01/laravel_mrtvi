@@ -1,0 +1,63 @@
+/* General page styling */
+body {
+    margin: 0;
+    padding: 0;
+    height: 100vh; /* Full viewport height */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f0f0f0; /* Light gray background */
+}
+
+/* Container styling */
+.w-100.h-100.d-flex.justify-content-center.align-items-center.text-white {
+    background-color: #254E70; /* Dark blue background */
+    color: white; /* White text */
+}
+
+/* Form container styling */
+.w-25.p-5.border.rounded {
+    background-color: #254E70; /* Dark blue background */
+    color: white; /* White text */
+    border-color: #003366; /* Darker blue border */
+}
+
+/* Form title styling */
+.w-100.mb-2.text-center.fs-2 {
+    font-size: 24px; /* Larger font size for title */
+    margin-bottom: 10px; /* Space below title */
+}
+
+/* Form input styling */
+.form-outline.mb-2 {
+    background-color: #003366; /* Dark blue background */
+    color: white; /* White text */
+    border-color: #003366; /* Dark blue border */
+}
+
+/* Form input label styling */
+.form-label {
+    color: white; /* White text */
+}
+
+/* Submit button styling */
+.w-100.rounded.btn-primary.btn-block.mb-2.py-2 {
+    background-color: #0066cc; /* Lighter blue for primary button */
+    color: white; /* White text */
+    border-color: #0066cc; /* Lighter blue border */
+    transition: background-color 0.3s; /* Smooth transition for hover */
+}
+
+.w-100.rounded.btn-primary.btn-block.mb-2.py-2:hover {
+    background-color: #004d99; /* Darker blue on hover */
+}
+
+/* Link styling */
+a {
+    color: white; /* White text */
+    text-decoration: none; /* No underline */
+}
+
+a:hover {
+    color: #004d99; /* Darker blue on hover */
+}

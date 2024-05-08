@@ -1,0 +1,50 @@
+.custom-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.card-content-wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.card-content {
+  padding: 20px;
+  flex: 2; /* This will make the content take up 2/3 of the space */
+}
+
+.card-image {
+  width: 33.33%; /* This will make the image take up 1/3 of the space */
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+}
+
+.button-group {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.admin-buttons {
+  display: flex;
+  justify-content: flex-end;
+  flex-grow: 1;
+}
+
+.card-footer {
+  background-color: #007BFF;
+  color: white;
+  padding: 10px;
+  border-radius: 0 0 10px 10px;
+  position: relative;
+  bottom: 0;
+  width: 100%;
+}
