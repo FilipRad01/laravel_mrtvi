@@ -6,7 +6,7 @@
 
 @section('content')
 <h1>Courses</h1>
-@if(Auth::user()->role == 'admin')
+@if(Auth::user()->role == 'admin' || Auth::user()->role == 'prof')
     <a href="{{ route('courses.create') }}" class="btn btn-primary me-2">Add Course</a>
 @endif
 <div class="container">
@@ -19,9 +19,10 @@
                             <h5 class="card-title">{{ $course->name }}</h5>
                             <p class="card-text">{{ substr($course->description,0,100) }}</p>
                             <p class="card-text">Difficulty: {{ $course->diff }}</p>
+                            <p class="card-text">Created: {{ $course->prof->name }}</p>
                             <div class="button-group">
                                 <a href="{{ route('courses.show', $course->id) }}" class="btn btn-primary">See details</a>
-                                @if(Auth::user()->role == 'admin')
+                                @if(Auth::user()->role == 'admin' || $course->professor==Auth::user()->id)
                                     <div class="admin-buttons">
                                         <a href="{{ route('courses.edit', $course->id) }}" class="btn btn-primary me-2" aria-label="Edit"><x-lucide-pencil/></a>
                                         <form action="{{ route('courses.destroy', $course->id) }}" method="POST" class="d-inline">

@@ -16,7 +16,8 @@ class CourseController extends Controller implements HasMiddleware
     public static function middleware(): array
     {
         return [
-            new Middleware(['isAdmin'], only: ['create', 'destroy','update','edit','store']),
+            new Middleware(['role:prof'], only: ['create','store']),
+            new Middleware(['owner:course'], only: ['update','destroy','edit']),
         ];
     }
     public function index()
@@ -42,6 +43,7 @@ class CourseController extends Controller implements HasMiddleware
         $extension = $request->file('image')->extension();
         $imgName = time().$extension;
         Course::create([
+            'professor'=>Auth::user()->id,
             'name'=> $request->name,
             'description'=> $request->description,
             'diff' => $request->diff,
@@ -78,7 +80,7 @@ class CourseController extends Controller implements HasMiddleware
     }
     
     public function show(string $id){
-        $course = Course::where('id',$id)->with('users')->firstOrFail();
+        $course = Course::where('id',$id)->with('users','prof')->firstOrFail();
         $userInCourse = false;
         foreach($course->users as $user) {
             if($user->id == Auth::user()->id) {

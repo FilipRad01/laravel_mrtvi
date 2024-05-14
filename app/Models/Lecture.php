@@ -13,7 +13,7 @@ class Lecture extends Model
 
     public $timestamps = false;
 
-    public function courses(): BelongsTo
+    public function course(): BelongsTo
     {
         return $this->belongsTo(Course::class, 'course_id');
     }

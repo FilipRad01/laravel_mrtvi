@@ -11,7 +11,7 @@ class LectureController extends Controller implements HasMiddleware
 {
     public static function middleware(): array {
         return [
-            new Middleware(['isAdmin'], only: ['create', 'edit', 'update', 'store', 'destroy'])
+            new Middleware(['owner:course'], only: ['create', 'edit', 'update', 'store', 'destroy'])
         ];
     }
     /**
@@ -54,7 +54,7 @@ class LectureController extends Controller implements HasMiddleware
      */
     public function show(string $course, string $id)
     {
-        $lecture = Lecture::findOrFail($id);
+        $lecture = Lecture::findOrFail($id)->with('course')->get()->first();
         return view('lectures.show' , [
             'lecture'=> $lecture,
         ]);

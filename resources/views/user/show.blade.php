@@ -8,6 +8,9 @@
             <p>Name: {{ $user->name }}</p>
             <p>Email: {{ $user->email }}</p>
             <p>Joined Courses:</p>
+            @foreach ($user->courses as $course )
+                {{ $course->name }}
+            @endforeach
             <a href="{{ route('users.edit', $user->id) }}" class="btn btn-primary">Edit</a>
         </div>
     </div>

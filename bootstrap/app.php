@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Middleware\IsAdmin;
+use App\Http\Middleware\Owner;
+use App\Http\Middleware\RoleGuard;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
@@ -14,7 +16,8 @@ return Application::configure(basePath: dirname(__DIR__))
     ->withMiddleware(function (Middleware $middleware) {
         //
         $middleware->alias([
-            'isAdmin' => IsAdmin::class,
+            'role' => RoleGuard::class,
+            'owner'=>Owner::class,
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {

@@ -26,6 +26,12 @@
             <a class="nav-link" href="{{ route('users.show', Auth::id()) }}">Profile</a>
             </li>
         </ul>
+        <form method="POST" action="{{ route('logout') }}">
+          @csrf
+          <button type="submit">
+          {{ __('Log Out') }}
+          </button>
+        </form>        
         <div class="nav-item dropdown ">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             Dropdown

@@ -1,4 +1,4 @@
-@props(['lectures' => array(),'joined'=>false])
+@props(['lectures' => array(),'joined'=>false,'prof'])
 
 @section('styles')
     @vite(['resources/css/lecture.css'])
@@ -27,7 +27,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                @if($joined)
+                                @if($joined || Auth::user()->role=='admin' || $prof==Auth::user()->id)
                                 <a href="{{ route('lectures.show', ['course' => $lecture->course_id, 'lecture' => $lecture->id]) }}" class="btn btn-primary">View Lecture</a>
                                 @endif
                             </div>

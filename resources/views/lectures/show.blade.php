@@ -15,7 +15,7 @@
                         <div class="card-content">
                             <h5 class="card-title">{{ $lecture->name }}</h5>
                             <p class="card-text">{{ $lecture->description }}</p>
-                            @if(Auth::user()->role == 'admin')
+                            @if(Auth::user()->role == 'admin' || $lecture->course->professor==Auth::user()->id)
                                 <div class="button-group">
                                     <a href="{{ route('lectures.edit',['course'=>$lecture->course_id, 'lecture'=>$lecture->id]) }}" class="btn btn-primary me-2"><x-lucide-pencil/></a>
                                     <form action="{{ route('lectures.destroy', ['course'=>$lecture->course_id, 'lecture'=>$lecture->id]) }}" method="POST">
@@ -28,7 +28,6 @@
                         </div>
                     </div>
                     <div class="card-footer text-white">
-                        Created at: {{ $lecture->created_at }}
                     </div>
                 </div>
             </div>

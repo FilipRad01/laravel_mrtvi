@@ -32,9 +32,7 @@ Route::middleware('auth')->group(function () {
     Route::resource('/courses/{course}/lectures', LectureController::class)->middleware('auth');
     Route::delete('courses/{course}/lectures/{lecture}', [LectureController::class, 'destroy'])->name('lectures.destroy');
     Route::post('/courses/{course}/join', [UserController::class,'joinCourse'])->name('courses.join');
-    
-    Route::get('/users/{user}', [UserController::class, 'show'])->name('users.show');
-    Route::get('/users/{user}/edit', [UserController::class, 'edit'])->name('users.edit');
-    Route::put('/users/{user}', [UserController::class, 'update'])->name('users.update');
+    Route::resource('/users',UserController::class);
+    Route::post('/logout',[LoginController::class,'logout'])->name('logout');
     });
 
