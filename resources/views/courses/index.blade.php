@@ -5,10 +5,14 @@
 @endsection
 
 @section('content')
-<h1>Courses</h1>
-@if(Auth::user()->role == 'admin' || Auth::user()->role == 'prof')
-    <a href="{{ route('courses.create') }}" class="btn btn-primary me-2">Add Course</a>
-@endif
+<div class="flex justify-center items-center min-h-screen">
+    <div class="text-center">
+        <h1>Courses</h1>
+        @if(Auth::user()->role == 'admin' || Auth::user()->role == 'prof')
+            <a href="{{ route('courses.create') }}" class="btn btn-primary me-2">Add Course</a>
+        @endif
+    </div>
+</div>
 <div class="container">
     <div class="row row-cols-1 row-cols-lg-2 g-4">
         @foreach ($courses as $course)

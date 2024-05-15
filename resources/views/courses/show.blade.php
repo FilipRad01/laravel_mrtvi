@@ -6,8 +6,8 @@
 
 
 @section('content')
-    <h1>{{ $course->name }}</h1>
     <a href="{{ route('courses.index') }}" class="btn btn-primary me-2"><x-lucide-circle-arrow-left/></a>
+    <h1>{{ $course->name }}</h1>
     <div class="container">
         <div class="card">
             <div class="card-header">

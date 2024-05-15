@@ -39,7 +39,7 @@ class UserController extends Controller
     public function show(string $user)
     {
         
-        $user=User::where("id",$user)->with("courses")->get()->first();
+        $user=User::where("id",$user)->with("courses.prof")->get()->first();
         return view('user.show', compact('user'));
     }
 
