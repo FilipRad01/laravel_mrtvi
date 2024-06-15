@@ -50,7 +50,7 @@ aside.position-fixed {
 }
 
 .side_bar{
-    background-color: rgb(0, 109, 119)
+    
 }
 
 .sidebar_img{
@@ -61,14 +61,28 @@ aside.position-fixed {
 
 
 </style>
-<aside class="position-fixed side_bar right-0 bottom-0 h-100 overflow-auto" style="top: 4rem; z-index: 40; width: 16rem; transition: transform 0.3s ease; right:0;">
+<aside class="position-fixed side_bar right-0 bottom-0 h-100 overflow-auto bg-light" style="top: 4rem; z-index: 40; width: 16rem; transition: transform 0.3s ease; right:0;">
     
         <ul class="course-list">
             @foreach($courses as $course)
                 <li>
                     <a href="{{ route('courses.show', $course->id) }}" class="btn d-flex gap-3 justify-content-start align-items-center text-uppercase fw-bold">
                         <img src="{{ asset('storage/'.$course->image) }}" alt="category item" class="sidebar_img">
-                        {{ $course->name }}</a>
+                        {{ $course->name }}
+                    
+                        @if(count($course->users) != 0)
+                        {{-- U kursu je... --}}
+                        @if($course->users[0]->pivot->completed) 
+                            <div class="progress_button completed">
+                                <x-lucide-circle-check-big />
+                            </div>
+                        @else
+                            <div class="progress_button joined">
+                                <x-lucide-circle />
+                            </div>
+                        @endif
+                    @endif
+                    </a>
                 </li>
             @endforeach
         </ul>

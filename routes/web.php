@@ -1,4 +1,6 @@
 <?php
+
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\LectureController;
 use App\Http\Controllers\LoginController;
@@ -34,5 +36,13 @@ Route::middleware('auth')->group(function () {
     Route::post('/courses/{course}/join', [UserController::class,'joinCourse'])->name('courses.join');
     Route::resource('/users',UserController::class);
     Route::post('/logout',[LoginController::class,'logout'])->name('logout');
+
+    Route::post('/courses/{course}/lectures/{lecture}/check', [LectureController::class, 'check'])->name('lectures.check');
+
+    Route::middleware('role:admin')->group(function () {
+        Route::get('/admin', [AdminController::class,'index'])->name('admin');
+        Route::get('/admin/courses', [AdminController::class,'courses'])->name('admin.courses');
     });
+
+});
 

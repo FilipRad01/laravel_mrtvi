@@ -6,6 +6,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Course;
 use App\Models\Lecture;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controllers\HasMiddleware;
 use Illuminate\Routing\Controllers\Middleware;
@@ -22,7 +23,7 @@ class CourseController extends Controller implements HasMiddleware
     }
     public function index()
     {
-        $courses = Course::paginate(6);
+        $courses = Course::with(['users' => fn ($query) => $query->where('users.id', Auth::user()->id)])->paginate(4);
         return view('courses.index', ["courses"=>$courses]);
     }
 
@@ -81,20 +82,40 @@ class CourseController extends Controller implements HasMiddleware
     
     public function show(string $id){
         $course = Course::where('id',$id)->with('users','prof')->firstOrFail();
+        $completed = false;
         $userInCourse = false;
         foreach($course->users as $user) {
             if($user->id == Auth::user()->id) {
               $userInCourse = true;
               break;
             }
-          }
-        $lectures = Lecture::where('course_id', $id)->get();
+        }
+    
+        $user = User::where('id', Auth::user()->id)->with(['courses' => fn ($query) => $query->where('courses.id', $course->id)])->get()->first();
+        
+        if($user->courses->count() != 0) {
+            $completed = $user->courses[0]->pivot->completed;
+        } 
+
+        $lectures = Lecture::where('course_id', $id)->with('users')->get();
+
+        foreach($lectures as $lecture) {
+            foreach($lecture->users as $user) {
+                if($user->id === Auth::user()->id) {
+                    $lecture->done = true;
+                    break;
+                }
+            }
+        }
+
         return view('courses.show' , [
             'course' => $course,
             "lectures" => $lectures,
-            'joined' => $userInCourse
+            'joined' => $userInCourse,
+            'completed' => $completed
         ]);
     }
+
     
 
 }

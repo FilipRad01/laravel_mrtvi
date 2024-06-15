@@ -1,22 +1,4 @@
-/* General styles for the container and cards */
-.container {
-    max-width: 960px; /* Adjust the container width as needed */
-    margin: 0 auto; /* Center the container */
-    padding: 20px; /* Padding inside the container */
-}
-
 /* Styling for the row */
-.row {
-    display: flex; /* Flexbox layout for the row */
-    flex-wrap: wrap; /* Allow wrapping of items */
-    gap: 20px; /* Space between items */
-}
-
-/* Styling for the columns */
-.col-lg-4 {
-    flex: 0 0 33.333333%; /* Flex basis for large screens */
-    max-width: 33.333333%; /* Max width for large screens */
-}
 
 /* Styling for the cards */
 .card {

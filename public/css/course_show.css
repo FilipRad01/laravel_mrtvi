@@ -1,3 +1,8 @@
+.course-container {
+    width: 80%;
+    margin: 0 auto;
+}
+
 .custom-card {
     position: relative;
     overflow: hidden;

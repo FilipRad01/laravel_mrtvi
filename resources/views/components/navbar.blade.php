@@ -1,8 +1,10 @@
 <style>
-
+.navbar {
+  z-index: 9999;
+}
 </style>
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light navv">
+<nav class="navbar navbar-expand-lg navbar-light bg-light navv py-3">
     <div class="container-fluid">
       <a class="navbar-brand" href="{{ route('courses.index') }}">Courses</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -28,21 +30,13 @@
         </ul>
         <form method="POST" action="{{ route('logout') }}">
           @csrf
-          <button type="submit">
+          <button type="submit" class="btn btn-primary me-2">
           {{ __('Log Out') }}
           </button>
         </form>        
-        <div class="nav-item dropdown ">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Dropdown
-          </a>
-          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item" href="#">Action</a></li>
-            <li><a class="dropdown-item" href="#">Another action</a></li>
-            <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="#">Something else here</a></li>
-          </ul>
-        </div>
+        @if(Auth::user()->role == 'admin')
+            <a class="btn btn-primary me-2 mx-2 " href="{{ route('admin') }}">Admin Panel</a>
+        @endif
       </div>
     </div>
   </nav>

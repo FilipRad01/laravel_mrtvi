@@ -1,8 +1,9 @@
 /* General styles for the container and cards */
 .container {
-    max-width: 960px; /* Adjust the container width as needed */
+
+    width: 100%;
     margin: 0 auto; /* Center the container */
-    padding: 20px; /* Padding inside the container */
+    
 }
 
 /* Styling for the row */
@@ -24,7 +25,7 @@
     color: white; /* White text color for the card content */
     border-radius: 50%; /* Makes the cards circular */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
-    padding: 20px; /* Padding inside the card */
+    /* padding: 20px; Padding inside the card */
     margin-top: 20px; /* Space above the card */
     display: flex; /* Flexbox layout for the card */
     flex-direction: column; /* Stack children vertically */

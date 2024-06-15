@@ -27,7 +27,7 @@ class Course extends Model
 
     public function users() : BelongsToMany
     {
-        return $this->belongsToMany(User::class);
+        return $this->belongsToMany(User::class)->withPivot('completed');
     }
 
     public function prof() : BelongsTo
