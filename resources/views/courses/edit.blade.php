@@ -8,7 +8,7 @@
 <h1>Edit Course</h1>
 <a href="{{ route('courses.index') }}" class="btn btn-primary me-2">Back to Courses</a>
 <div class="container">
-    <form action="{{ route('courses.update', $course->id) }}" method="POST">
+    <form action="{{ route('courses.update', $course->id) }}" method="POST" enctype="multipart/form-data">
         @method('PATCH')
             @csrf
             <div class="form-group">
@@ -18,6 +18,10 @@
             <div class="form-group">
                 <label for="description">Description</label>
                 <textarea class="form-control" id="description" name="description" rows="3">{{ old('description', $course->description) }}</textarea>
+            </div>
+            <div class="form-group">
+                <label for="image">Image</label>
+                <input type="file" class="form-control" id="image" name="image" />
             </div>
             <div class="form-group">
                 <label for="diff">Difficulty was {{ $course->diff }}</label>

@@ -19,7 +19,7 @@
                                 <div class="card-header no-border">
                                     <h5 class="card-title">#{{ $index + 1 }}</h5>
                                 </div>
-                                <div class="card-body pt-0">
+                                <div class="card-body py-4">
                                     <div class="widget-49">
                                         <div class="widget-49-title-wrapper">
                                             <div class="widget-49-date-primary">
@@ -31,10 +31,16 @@
                                         </div>
                                     </div>
                                     @if($lecture->done)
-                                        <h1>DONE</h1>
+                                        <div class="d-flex justify-content-center align-items-center">
+                                            <div class="progress_button completed my-3">
+                                                <x-lucide-circle-check-big />
+                                            </div>
+                                        </div>
                                     @endif
                                     @if($joined || Auth::user()->role=='admin' || $prof==Auth::user()->id)
+                                    <div class="d-flex justify-content-center align-items-center">    
                                         <a href="{{ route('lectures.show', ['course' => $lecture->course_id, 'lecture' => $lecture->id]) }}" class="btn btn-primary">View Lecture</a>
+                                    </div>
                                     @endif
                                 </div>
                             </div>

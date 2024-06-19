@@ -42,6 +42,9 @@ Route::middleware('auth')->group(function () {
     Route::middleware('role:admin')->group(function () {
         Route::get('/admin', [AdminController::class,'index'])->name('admin');
         Route::get('/admin/courses', [AdminController::class,'courses'])->name('admin.courses');
+        Route::get('/admin/users', [AdminController::class,'users'])->name('admin.users');
+
+        Route::patch('/users/{user}/role', [UserController::class, 'changeRole'])->name('users.role');
     });
 
 });

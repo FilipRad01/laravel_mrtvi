@@ -38,8 +38,7 @@ class UserController extends Controller
      */
     public function show(string $user)
     {
-        
-        $user=User::where("id",$user)->with("courses.prof")->get()->first();
+        $user = User::where("id", $user)->with("courses.prof")->get()->first();
         return view('user.show', compact('user'));
     }
 
@@ -75,5 +74,23 @@ class UserController extends Controller
         $course = Course::findOrFail($courseId);
         $course->users()->syncWithoutDetaching(Auth::user()->id);
         return redirect(route("courses.show", $course->id))->with("success","");
+    }
+
+    public function changeRole(Request $request, string $user) {
+        $user = User::find($user);
+        if(!$user) return redirect()->withErrors('User doesnt exist');
+
+        $request->only('role');
+        $request->validate([
+            'role' => 'required|in:admin,prof,user'
+        ]);
+
+        $user->timestamps = false;
+
+        $user->role = $request->role;
+        $user->save();  
+
+        return true;
+
     }
 }

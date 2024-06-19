@@ -10,10 +10,10 @@
         <a href="{{ route('courses.show',['course' => $lecture->course_id]) }}" class="btn btn-primary me-2">Back to Lectures</a>
         <div class="pt-4">
             <div class="row row-cols-1 row-cols-lg-2 g-4">
-                <div class="col">
+                <div class="col w-100">
                     <div class="card h-100 custom-card">
                         <div class="card-content-wrapper">
-                            <div class="card-content">
+                            <div class="card-content p-5 w-100">
                                 <h5 class="card-title">{{ $lecture->name }}</h5>
                                 <p class="card-text">{{ $lecture->description }}</p>
                                 @if(Auth::user()->role == 'admin' || $lecture->course->professor==Auth::user()->id)
@@ -29,10 +29,17 @@
                                 @if(!$lecture->done)
                                     <form method="POST" class="d-flex justify-content-center py-2" action="{{ route('lectures.check', ['course' => $lecture->course_id, 'lecture' => $lecture->id]) }}">
                                         @csrf
-                                        <button type="submit" class="btn btn-danger">Check</button>
+                                        <button type="submit" class="btn btn-success">
+                                            <x-lucide-check-check />
+                                            Check
+                                        </button>
                                     </form>
                                 @else 
-                                    <h1>DONE</h1>
+                                    <div class="d-flex justify-content-center align-items-center">
+                                        <div class="progress_button completed my-3">
+                                            <x-lucide-circle-check-big />
+                                        </div>
+                                    </div>
                                 @endif
                             </div>
                         </div>

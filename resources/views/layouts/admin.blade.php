@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Panel</title>
+    @yield('head')
     <!-- Bootstrap CSS -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
     {{-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"> --}}
@@ -16,18 +17,20 @@
             padding: 20px;
         }
     </style>
+    @yield('styles')
 </head>
 <body>
 
 <div class="container-fluid">
     <div class="row">
         <!-- Sidebar -->
-        <nav id="sidebar" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+        <nav id="sidebar" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse h3  fw-bold">
+            
             <div class="list-group list-group-flush">
-                <a href="#" class="list-group-item list-group-item-action active">Dashboard</a>
-                <a href="{{route('admin.courses')}}" class="list-group-item list-group-item-action">Courses</a>
-                <a href="#kursevi" class="list-group-item list-group-item-action">Lectures</a>
-                <a href="#lekcije" class="list-group-item list-group-item-action">Users</a>
+                <a href="{{ route('courses.index') }}" class="list-group-item list-group-item-action">To home</a>
+
+                <a href="{{route('admin.courses')}}" class="list-group-item list-group-item-action">Courses</a>           
+                <a href="{{ route('admin.users') }}" class="list-group-item list-group-item-action">Users</a>
             </div>
         </nav>
 

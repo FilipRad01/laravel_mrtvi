@@ -4,6 +4,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Filters\CourseFilter;
 use App\Models\Course;
 use App\Models\Lecture;
 use App\Models\User;
@@ -21,9 +22,9 @@ class CourseController extends Controller implements HasMiddleware
             new Middleware(['owner:course'], only: ['update','destroy','edit']),
         ];
     }
-    public function index()
+    public function index(CourseFilter $filter)
     {
-        $courses = Course::with(['users' => fn ($query) => $query->where('users.id', Auth::user()->id)])->paginate(4);
+        $courses = Course::filter($filter)->with(['users' => fn ($query) => $query->where('users.id', Auth::user()->id)])->paginate(4);
         return view('courses.index', ["courses"=>$courses]);
     }
 
@@ -42,7 +43,7 @@ class CourseController extends Controller implements HasMiddleware
         ]);
 
         $extension = $request->file('image')->extension();
-        $imgName = time().$extension;
+        $imgName = time().'.'.$extension;
         Course::create([
             'professor'=>Auth::user()->id,
             'name'=> $request->name,
@@ -64,11 +65,28 @@ class CourseController extends Controller implements HasMiddleware
     {
         $request->validate([
             'name' => 'required',
-            'description' => 'nullable',
+            'description' => 'required',
             'diff' => 'required',
+            'image' => 'sometimes|nullable|mimes:jpg,png,svg|max:2048',
         ]);
 
-        $course->update($request->all());
+        $img = $course->img;
+
+        if($request->image) {
+            $extension = $request->file('image')->extension();
+            $imgName = time().'.'.$extension;
+            $request->image->storeAs('public/images/courses/'.$request->name, $imgName);
+            $img = 'images/courses/'.$request->name.'/'.$imgName;
+        }
+
+        $course->update([
+            'name' => $request->name,
+            'description' => $request->description,
+            'diff' => $request->diff,
+            'image' => $img
+        ]);
+
+
         return redirect()->route('courses.index')
                         ->with('success','Course updated successfully');
     }
@@ -76,6 +94,12 @@ class CourseController extends Controller implements HasMiddleware
     public function destroy(Course $course)
     {
         $course->delete();
+
+        if(Auth::user()->role == 'admin') {
+            return redirect()->route('admin.courses')
+                ->with('success','Course deleted successfully');
+        }
+
         return redirect()->route('courses.index')
                         ->with('success','Course deleted successfully');
     }

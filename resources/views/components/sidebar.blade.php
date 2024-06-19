@@ -59,6 +59,29 @@ aside.position-fixed {
     border-radius: 100%;
 }
 
+.progress_button {
+    padding: 2px;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    margin-bottom: 6px;
+    width: 33%;
+    text-align: center;
+    font-weight: bold;
+    border-radius: 15px;
+}
+
+.completed {
+    color: rgb(0, 58, 22);
+    background: rgb(2,0,36);
+    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(43,199,19,1) 0%, rgba(0,255,106,1) 100%);
+    
+}
+
+.joined {
+    color: rgb(234, 237, 255);
+    background: rgb(2,0,36);
+    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(19,174,199,1) 0%, rgba(0,129,255,1) 100%);
+}
 
 </style>
 <aside class="position-fixed side_bar right-0 bottom-0 h-100 overflow-auto bg-light" style="top: 4rem; z-index: 40; width: 16rem; transition: transform 0.3s ease; right:0;">
