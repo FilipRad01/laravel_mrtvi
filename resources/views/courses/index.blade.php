@@ -13,7 +13,7 @@
         @endif
     </div>
 </div>
-<div class="container">
+<div class="container w-100">
     <div class="row row-cols-1 row-cols-lg-2 g-4">
         @foreach ($courses as $course)
             <x-course-card :course="$course" />

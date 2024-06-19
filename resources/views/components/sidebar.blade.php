@@ -84,7 +84,7 @@ aside.position-fixed {
 }
 
 </style>
-<aside class="position-fixed side_bar right-0 bottom-0 h-100 overflow-auto bg-light" style="top: 4rem; z-index: 40; width: 16rem; transition: transform 0.3s ease; right:0;">
+<aside class="position-fixed d-none d-md-block side_bar right-0 bottom-0 h-100 overflow-auto bg-light" style="top: 4rem; z-index: 40; width: 16rem; transition: transform 0.3s ease; right:0;">
     
         <ul class="course-list">
             @foreach($courses as $course)

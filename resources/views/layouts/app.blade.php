@@ -12,7 +12,7 @@
 </head>
 <body>
     <x-navbar/>
-    <div class="w-100" style="margin-right: 16rem">
+    <div class="w-100" >
         <div class="w-100 main content " >
             @yield('content')
         </div>

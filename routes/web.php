@@ -19,12 +19,21 @@ Route::middleware('guest')->group(function () {
     Route::get('/register', function () {
         return view('auth.register');
     });
+
+    
     
     Route::post('/login',[LoginController::class,"login"])->name('login');
     Route::post('/register',[RegisterController::class,"register"])->name('register');
 });
 
 Route::middleware('auth')->group(function () { 
+    Route::get('/contact', function () {
+        return view('contact');
+    })->name('contact');
+    
+    Route::get('/about', function () {
+        return view('about');
+    })->name('about');
     Route::get('/', function () {
         return redirect(route('courses.index'));
     });

@@ -15,6 +15,12 @@
           <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="{{ route('courses.index') }}" >Home</a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="{{ route('about') }}" >About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="{{ route('contact') }}" >Contact</a>
+          </li>
 
           <li class="nav-item">
             <form class="d-flex">
@@ -26,15 +32,17 @@
             <a class="nav-link" href="{{ route('users.show', Auth::id()) }}">Profile</a>
             </li>
         </ul>
-        <form method="POST" action="{{ route('logout') }}">
-          @csrf
-          <button type="submit" class="btn btn-primary me-2">
-          {{ __('Log Out') }}
-          </button>
-        </form>        
-        @if(Auth::user()->role == 'admin')
+        <div class="d-flex flex-sm-col">
+          @if(Auth::user()->role == 'admin')
             <a class="btn btn-primary me-2 mx-2 " href="{{ route('admin') }}">Admin Panel</a>
-        @endif
+          @endif
+          <form method="POST" action="{{ route('logout') }}">
+            @csrf
+            <button type="submit" class="btn btn-primary me-2">
+            {{ __('Log Out') }}
+            </button>
+          </form>       
+        </div>   
       </div>
     </div>
   </nav>
